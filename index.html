@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mansi Di Birthday Madness 🎉</title>
+
+  <!-- Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(-45deg,#ff9a9e,#fecfef,#fad0c4,#ffd1ff,#ffecd2);
+      background-size: 400% 400%;
+      animation: bgShift 10s ease infinite;
+      position: relative;
+    }
+
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .sparkle {
+      position: absolute;
+      top: -10%;
+      font-size: 22px;
+      animation: sparkleFall 3.5s linear infinite;
+    }
+    .sparkle:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .sparkle:nth-child(2) { left: 30%; animation-delay: 0.7s; }
+    .sparkle:nth-child(3) { left: 50%; animation-delay: 1.4s; }
+    .sparkle:nth-child(4) { left: 70%; animation-delay: 2.1s; }
+    .sparkle:nth-child(5) { left: 90%; animation-delay: 2.8s; }
+
+    .balloons {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 4;
+    }
+    .balloon {
+      position: absolute;
+      bottom: -20%;
+      font-size: 40px;
+      animation: balloonUp 9s ease-in infinite;
+    }
+    .balloon:nth-child(1) { left: -8%;  animation-delay: 0s; }
+    .balloon:nth-child(2) { left: -14%; animation-delay: 3s; }
+    .balloon:nth-child(3) { right: -8%;  animation-delay: 1.5s; }
+    .balloon:nth-child(4) { right: -14%; animation-delay: 4.5s; }
+
+    .container {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      padding: 16px;
+    }
+
+    .screen {
+      display: none;
+      text-align: center;
+      max-width: 520px;
+      width: 100%;
+      padding: 40px 26px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(18px);
+      border-radius: 30px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+      border: 2px solid rgba(255,255,255,0.4);
+      animation: slideUp 0.6s ease-out;
+    }
+    .screen.active { display: block; }
+
+    .sun   { font-size: 110px; margin-bottom: 12px; animation: shine 2s ease-in-out infinite; }
+    .cake  { font-size: 110px; margin: 8px 0 18px;  animation: spin 4s linear infinite; }
+    .cat-gif {
+      width: 240px;
+      height: 240px;
+      border-radius: 22px;
+      margin: 10px 0 15px;
+      animation: bounce 2s infinite;
+      object-fit: cover;
+    }
+
+    .meme {
+      font-size: 18px;
+      color: #ff4f87;
+      margin: 12px 0 8px;
+      padding: 10px 14px;
+      background: linear-gradient(45deg,#fff3cd,#ffeaa7);
+      border-radius: 16px;
+      border: 2px dashed #ff6b9d;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #ff3366;
+      margin: 12px 0 6px;
+    }
+    h2 {
+      font-size: 22px;
+      color: #ff4f87;
+      margin-top: 6px;
+    }
+    p {
+      font-size: 16px;
+      color: #333;
+      margin: 8px 0 16px;
+      line-height: 1.5;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 999px;
+      background: linear-gradient(45deg,#ff6b9d,#ff8fab,#ff6b9d);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 8px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(255,107,157,0.5);
+      transition: all 0.25s;
+    }
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 16px 35px rgba(255,107,157,0.7);
+    }
+
+    @keyframes bgShift {
+      0%,100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    @keyframes sparkleFall {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(115vh); opacity: 0; }
+    }
+    @keyframes balloonUp {
+      0%   { transform: translateY(0) scale(0.6); opacity: 0; }
+      15%  { opacity: 1; }
+      80%  { opacity: 1; }
+      100% { transform: translateY(-130vh) scale(0.9); opacity: 0; }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shine {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @keyframes bounce {
+      0%,20%,50%,80%,100% { transform: translateY(0); }
+      40% { transform: translateY(-14px); }
+      60% { transform: translateY(-7px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="sparkles">
+    <span class="sparkle">✨</span>
+    <span class="sparkle">⭐</span>
+    <span class="sparkle">💫</span>
+    <span class="sparkle">✨</span>
+    <span class="sparkle">⭐</span>
+  </div>
+
+  <div class="balloons">
+    <span class="balloon">🎈</span>
+    <span class="balloon">🎉</span>
+    <span class="balloon">🎈</span>
+    <span class="balloon">🎊</span>
+  </div>
+
+  <div class="container">
+    <div class="screen active" id="s1">
+      <div class="sun">☀️</div>
+      <div class="meme">Level 1: You opened the link. No way back now. 😏</div>
+      <h1>Hey Mansi Di!</h1>
+      <p>This is not a normal text message. This is a full birthday mission.</p>
+      <button class="btn" onclick="goTo(2)">Next →</button>
+    </div>
+
+    <div class="screen" id="s2">
+      <div class="meme">Me: “I’ll keep it simple.”<br>Also me: 12 screens later… 🤡</div>
+      <h1>Welcome to the chaos.</h1>
+      <p>Every tap will take you deeper into this birthday madness.</p>
+      <button class="btn" onclick="goTo(3)">Keep going →</button>
+    </div>
+
+    <div class="screen" id="s3">
+      <div class="meme">If you are still clicking, you officially love drama. 🎭</div>
+      <h1>No escape mode: ON.</h1>
+      <p>The only way out now is to reach the very last screen.</p>
+      <button class="btn" onclick="goTo(4)">I accept →</button>
+    </div>
+
+    <div class="screen" id="s4">
+      <div class="meme">Loading birthday surprise… 20% ⏳</div>
+      <h1>Just warming up.</h1>
+      <p>Good things take time… and way too many clicks.</p>
+      <button class="btn" onclick="goTo(5)">Fine, next →</button>
+    </div>
+
+    <div class="screen" id="s5">
+      <div class="meme">Normal siblings: “HBD.”<br>Me: builds a whole website for Mansi Di. 💻🔥</div>
+      <h1>You are totally worth it.</h1>
+      <p>Because you are not just my sister, you are my favourite human.</p>
+      <button class="btn" onclick="goTo(6)">Continue →</button>
+    </div>
+
+    <div class="screen" id="s6">
+      <div class="meme">My sleep schedule died so this page could live. 😵‍💫</div>
+      <h1>A little sacrifice.</h1>
+      <p>All these screens are proof that you are seriously precious.</p>
+      <button class="btn" onclick="goTo(7)">Keep suffering →</button>
+    </div>
+
+    <div class="screen" id="s7">
+      <div class="meme">You now: “How many more?!”<br>Me: “Yes.” 😈</div>
+      <h1>Halfway through.</h1>
+      <p>If you stop now, this whole dramatic experience is wasted.</p>
+      <button class="btn" onclick="goTo(8)">Okay, next →</button>
+    </div>
+
+    <div class="screen" id="s8">
+      <div class="meme">Loading birthday surprise… 60% 🔥</div>
+      <h1>Getting closer.</h1>
+      <p>Deep breath. Big smile. The real birthday moment is coming.</p>
+      <button class="btn" onclick="goTo(9)">I’m ready →</button>
+    </div>
+
+    <div class="screen" id="s9">
+      <div class="meme">This is your “almost there” checkpoint. ✅</div>
+      <h1>Just a few more taps.</h1>
+      <p>Think of this as a mini‑game you must finish to unlock your gift.</p>
+      <button class="btn" onclick="goTo(10)">Next level →</button>
+    </div>
+
+    <div class="screen" id="s10">
+      <div class="meme">Loading birthday surprise… 90% 💥</div>
+      <h1>The moment is so close.</h1>
+      <p>Heart beating faster? Good. That means the surprise is working.</p>
+      <button class="btn" onclick="goTo(11)">Final door →</button>
+    </div>
+
+    <div class="screen" id="s11">
+      <div class="meme">Birthday mode: MAXIMUM 🔥🎉</div>
+      <div class="cake">🎂</div>
+      <h1>Happy Birthday, Mansi Di! 💖</h1>
+      <p>
+        You are the sweetest, funniest, most dramatic elder sister and this
+        whole long journey is just to say: you are loved more than you know.
+      </p>
+      <button class="btn" onclick="goTo(12)">Now your gift ↓</button>
+    </div>
+
+    <div class="screen" id="s12">
+      <div class="meme">This little cat survived all 12 screens just for you, Mansi Di. 🐱</div>
+      <img
+        class="cat-gif"
+        src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"
+        alt="Happy Birthday Cat"
+      />
+      <h2>Happy Birthday, Mansi Di! 🎁</h2>
+      <p>
+        May your year be full of laughter, memes, late‑night talks and all the
+        love in the world. You truly deserve it.
+      </p>
+      <button class="btn" onclick="goTo(1)">Start again ↻</button>
+    </div>
+  </div>
+
+  <script>
+    function goTo(n) {
+      const all = document.querySelectorAll(".screen");
+      all.forEach(el => el.classList.remove("active"));
+      document.getElementById("s" + n).classList.add("active");
+    }
+  </script>
+</body>
+</html>
